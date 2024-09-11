@@ -6,9 +6,16 @@ import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 
 class BirdRepository {
-    // TODO: Get a list of images from this endpoint: "https://sebi.io/demo-image-api/pictures.json"
+    val httpClient = HttpClient {
+        install(ContentNegotiation) {
+            json()
+        }
+    }
+
     suspend fun getImages(): List<BirdImage> {
-        return emptyList()
+        return httpClient
+            .get("https://sebi.io/demo-image-api/pictures.json")
+            .body<List<BirdImage>>()
     }
 
     fun close() {
