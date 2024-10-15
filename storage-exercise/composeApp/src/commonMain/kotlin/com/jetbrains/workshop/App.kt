@@ -25,6 +25,7 @@ fun App() {
         var text by remember { mutableStateOf("") }
         var loadedText by remember { mutableStateOf("") }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(Greeting().greet())
             TextField(value = text, onValueChange = { text = it })
             Button(onClick = {
                 saveString("my-key", text)
